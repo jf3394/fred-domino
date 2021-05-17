@@ -113,10 +113,10 @@ for (i = 0; i < layers.length; i++) {
 
 map.on('mousemove', function(e) {
   var address = map.queryRenderedFeatures(e.point, {
-      layers: ['data-driven-circles']
+      layers: ['found_no_ld']
     });
       if (address.length > 0) {
-          document.getElementById('pd').innerHTML = '<h3><strong>' + data-driven-circles[0].properties.address + '</strong></h3><p><strong><em>';
+          document.getElementById('pd').innerHTML = '<h3><strong>' + found_no_ld[0].properties.address + '</strong></h3><p><strong><em>';
         } else {
           document.getElementById('pd').innerHTML = '<p>Hover over a point!</p>';
         }
