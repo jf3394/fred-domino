@@ -1,1 +1,124 @@
-Hello, world
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+<div id='map'></div>
+<div class='map-overlay' id='features'><h2>Property Auctions</h2></div>
+<div class='map-overlay' id='legend'></div>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h2,
+h3 {
+  margin: 10px;
+  font-size: 1.2em;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+p {
+  font-size: 0.85em;
+  margin: 10px;
+  text-align: left;
+}
+
+/**
+* Create a position for the map
+* on the page */
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+/**
+* Set rules for how the map overlays
+* (information box and legend) will be displayed
+* on the page. */
+.map-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.8);
+  margin-right: 20px;
+  font-family: Arial, sans-serif;
+  overflow: auto;
+  border-radius: 3px;
+}
+
+#features {
+  top: 0;
+  height: 100px;
+  margin-top: 20px;
+  width: 250px;
+}
+
+#legend {
+  padding: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  line-height: 18px;
+  height: 150px;
+  margin-bottom: 40px;
+  width: 100px;
+}
+
+.legend-key {
+  display: inline-block;
+  border-radius: 20%;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+}
+
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div class="map-overlay" id="features">
+<h2>US population density</h2>
+<div id="pd"><p>Hover over a state!</p></div>
+</div>
+<div class="map-overlay" id="legend"></div>
+
+<script mapboxgl.accessToken = pk.eyJ1IjoiamYzMzk0IiwiYSI6ImNrb3J5ZnBodjAzYXoyd25wbWd0ZG4xNHIifQ.5qV0MVv7WCL3icdQ4UJvgw;
+  var map = new mapboxgl.Map({
+  container: 'map', // container id
+  style: 'mapbox://styles/jf3394/ckoqnkajt1dgb18nwiapz802l' // replace this with your style URL
+});
+
+map.on('load', function() {
+var layers = ['Researching', 'Candidate', 'Sold', 'NotSold', 'Public', 'For Sale'];
+var colors = ['#496DEE', '#69BF80', '#D95E8B', '#E7975A', '#E15B56', '#DAD662'];
+
+for (i = 0; i < layers.length; i++) {
+  var layer = layers[i];
+  var color = colors[i];
+  var item = document.createElement('div');
+  var key = document.createElement('span');
+  key.className = 'legend-key';
+  key.style.backgroundColor = color;
+
+  var value = document.createElement('span');
+  value.innerHTML = layer;
+  item.appendChild(key);
+  item.appendChild(value);
+  legend.appendChild(item);
+}
+
+map.on('mousemove', function(e) {
+  var address = map.queryRenderedFeatures(e.point, {
+    layers: ['found_no_ld']
+  });
+
+  if (address.length > 0) {
+    document.getElementById('pd').innerHTML = '<h3><strong>' + found_no_ld[0].properties.address + '</strong></h3><p><strong><em>';
+  } else {
+    document.getElementById('pd').innerHTML = '<p>Hover over a point!</p>';
+  }  }
+});
+map.getCanvas().style.cursor = 'default';
+map.fitBounds([[-133.2421875, 16.972741], [-47.63671875, 52.696361]]);
+});
