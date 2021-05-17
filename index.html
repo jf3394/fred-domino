@@ -8,7 +8,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
 h2,
 h3 {
   margin: 10px;
@@ -78,15 +77,15 @@ p {
 <body>
 <div id="map"></div>
 <div class="map-overlay" id="features">
-<h2>US population density</h2>
-<div id="pd"><p>Hover over a state!</p></div>
+<h2>Property Auctions</h2>
 </div>
 <div class="map-overlay" id="legend"></div>
 
-<script mapboxgl.accessToken = pk.eyJ1IjoiamYzMzk0IiwiYSI6ImNrb3J5ZnBodjAzYXoyd25wbWd0ZG4xNHIifQ.5qV0MVv7WCL3icdQ4UJvgw;
+<script>
+ mapboxgl.accessToken = 'pk.eyJ1IjoiamYzMzk0IiwiYSI6ImNrb3J5ZnBodjAzYXoyd25wbWd0ZG4xNHIifQ.5qV0MVv7WCL3icdQ4UJvgw';
   var map = new mapboxgl.Map({
-  container: 'map', // container id
-  style: 'mapbox://styles/jf3394/ckoqnkajt1dgb18nwiapz802l' // replace this with your style URL
+  container: 'map',
+  style: 'mapbox://styles/jf3394/ckoqnkajt1dgb18nwiapz802l'
 });
 
 map.on('load', function() {
