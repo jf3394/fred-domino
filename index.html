@@ -83,14 +83,14 @@ p {
 
 var map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/jf3394/ckoqnkajt1dgb18nwiapz802l'
+  style: 'mapbox://styles/jf3394/ckoqnkajt1dgb18nwiapz802l',
+  center: [-90.0715, 29.9511],
+  zoom: 9
 });
-
+map.addControl(new mapboxgl.NavigationControl());
 map.on('load', function() {
   map.getCanvas().style.cursor = "default";
-  map.fitBounds([
-    [-89.880383, 29.917742]
-    [-90.170684, 30.170684],
+
 ]);
 
 var layers = ['Researching', 'Candidate', 'Sold', 'NotSold', 'Public', 'For Sale'];
